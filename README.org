@@ -1,0 +1,66 @@
+* Syntax::NamedArgs
+
+This module provides simple syntax sugar:
+
+#+BEGIN_SRC perl
+  use Syntax::NamedArgs;
+
+  sub function_with_args {
+      # required argument 'id'
+      my $id = get_arg id => @_;
+
+      # optional argument 'name' with default value 'Unknown person'
+      my $name = get_arg_opt name => 'Unknown person', @_;
+
+      print "$id = $name\n";
+  }
+
+function_with_args(id => 1, name => 'John Doe'); # will print "1 = John Doe"
+function_with_args(id => 2); # will print "2 = Unknown person"
+function_with_args(); # will throw an error
+#+END_SRC
+
+Arguments can be inherited, replaced and joined:
+
+#+BEGIN_SRC perl
+  sub fn1 {
+    my $fn1_arg = get_arg fn1_arg => @_;
+  }
+
+  sub fn2 {
+    my $fn2_arg = get_arg fn2_arg => @_;
+  }
+
+  sub fn3 {
+    # pass all args to fn1
+    fn1(@_);
+
+    # pass all, but replace value of fn2_arg
+    fn2(@_, fn2_arg => 'new value');
+
+    # pass all and provide default value for fn2_arg
+    fn2(fn2_arg => 'default value', @_);
+  }
+#+END_SRC
+
+** Installation
+
+To install this module type the following:
+
+#+BEGIN_SRC bash
+  perl Makefile.PL
+  make
+  make test
+  make install
+#+END_SRC
+
+** Copyright and license
+
+Copyright (C) 2019 by Evgenii Lepikhin
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.24.1 or,
+at your option, any later version of Perl 5 you may have available.
+
+ USAGE
+
