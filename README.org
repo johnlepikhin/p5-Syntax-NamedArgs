@@ -15,9 +15,9 @@ This module provides simple syntax sugar:
       print "$id = $name\n";
   }
 
-function_with_args(id => 1, name => 'John Doe'); # will print "1 = John Doe"
-function_with_args(id => 2); # will print "2 = Unknown person"
-function_with_args(); # will throw an error
+  function_with_args(id => 1, name => 'John Doe'); # will print "1 = John Doe"
+  function_with_args(id => 2); # will print "2 = Unknown person"
+  function_with_args(); # will throw an error
 #+END_SRC
 
 Arguments can be inherited, replaced and joined:
