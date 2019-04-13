@@ -4,6 +4,8 @@ use warnings;
 use strict;
 use Carp qw(cluck croak confess);
 
+our $VERSION = '0.01';
+
 use base 'Exporter';
 our @EXPORT_OK = qw(get_arg get_arg_opt);
 
